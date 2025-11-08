@@ -1,134 +1,136 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
 .container {
-  width: 400px;
-  padding: 20px;
+    width: 400px;
+    padding: 20px;
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
 }
 
 h2 {
-  margin: 15px 0;
-  color: #2c3e50;
+    margin: 15px 0;
+    color: #2c3e50;
 }
 
 .upload-section {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .upload-area {
-  border: 2px solid #3498db;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  background-color: #ecf0f1;
-  transition: all 0.3s ease;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    background-color: #ecf0f1;
+    transition: all 0.3s ease;
 }
 
 .upload-area:hover {
-  background-color: #d6eaf8;
-  border-color: #2980b9;
+    background-color: #d6eaf8;
+    border-color: #2980b9;
 }
 
 .upload-icon {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 10px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
 }
 
 .upload-button {
-  display: inline-block;
-  background-color: #3498db;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
-  margin-top: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .upload-button:hover {
-  background-color: #2980b9;
+    background-color: #2980b9;
 }
 
 .search-bar {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .search-bar input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 .book-list {
-  max-height: 300px;
-  overflow-y: auto;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .book-item {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-  transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 .book-item:hover {
-  background-color: #f0f0f0;
+    background-color: #f0f0f0;
 }
 
 .book-cover {
-  width: 50px;
-  height: 70px;
-  object-fit: cover;
-  margin-right: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 50px;
+    height: 70px;
+    object-fit: cover;
+    margin-right: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .book-info {
-  flex: 1;
+    flex: 1;
 }
 
 .book-title {
-  font-weight: bold;
-  margin-bottom: 5px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .book-author {
-  font-size: 0.9em;
-  color: #666;
+    font-size: 0.9em;
+    color: #666;
 }
 
 .book-actions {
-  display: flex;
-  gap: 5px;
+    display: flex;
+    gap: 12px;
 }
 
 .book-action {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #3498db;
-  font-size: 1.2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
 .book-action:hover {
-  color: #2980b9;
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
 }
