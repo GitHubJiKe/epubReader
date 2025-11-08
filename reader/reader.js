@@ -137,7 +137,7 @@ function updateReadingProgress(location) {
     if (location && location.start && location.start.displayed) {
         const currentPage = location.start.displayed.page;
         const totalPages = location.start.displayed.total;
-        
+
         if (currentPage !== undefined && totalPages !== undefined) {
             // 显示页码：当前页 / 总页数
             currentLocationElement.textContent = `${currentPage} / ${totalPages}`;
@@ -146,22 +146,31 @@ function updateReadingProgress(location) {
     }
 
     // 如果页码不可用，回退到百分比显示
-    if (book.locations && typeof book.locations.percentageFromCfi === "function") {
+    if (
+        book.locations &&
+        typeof book.locations.percentageFromCfi === "function"
+    ) {
         try {
-            const progress = book.locations.percentageFromCfi(location.start.cfi);
+            const progress = book.locations.percentageFromCfi(
+                location.start.cfi,
+            );
             const percentage = Math.round(progress * 100);
             currentLocationElement.textContent = `${percentage}%`;
         } catch (e) {
             // 如果位置信息还未生成或计算失败，显示"计算中..."提示
-            if (currentLocationElement.textContent !== "计算中..." && 
-                !currentLocationElement.textContent.includes("/")) {
+            if (
+                currentLocationElement.textContent !== "计算中..." &&
+                !currentLocationElement.textContent.includes("/")
+            ) {
                 currentLocationElement.textContent = "计算中...";
             }
         }
     } else {
         // locations还未生成，显示"计算中..."提示
-        if (currentLocationElement.textContent !== "计算中..." && 
-            !currentLocationElement.textContent.includes("/")) {
+        if (
+            currentLocationElement.textContent !== "计算中..." &&
+            !currentLocationElement.textContent.includes("/")
+        ) {
             currentLocationElement.textContent = "计算中...";
         }
     }
@@ -205,7 +214,7 @@ async function initReader(bookData, savedPosition = null) {
     try {
         // 创建EPUB书籍对象
         book = ePub(bookData.fileData);
-        
+
         // 等待书籍加载完成
         await book.ready;
 
@@ -215,6 +224,10 @@ async function initReader(bookData, savedPosition = null) {
             width: "100%",
             height: "100%",
             spread: "none",
+            allowScriptedContent: true, // 关键配置：启用富媒体交互
+            mediaOverlay: true, // 支持媒体叠加层（音频朗读同步文本）
+            accessible: true, // 开启无障碍支持
+            textSelection: true, // 允许文本选择（方便屏幕阅读器识别）Ï
         });
 
         // 设置翻页事件监听器
@@ -252,7 +265,7 @@ async function initReader(bookData, savedPosition = null) {
             // 加载目录
             const toc = await book.loaded.navigation;
             const tocContent = document.getElementById("tocContent");
-            
+
             if (toc && toc.toc && toc.toc.length > 0) {
                 toc.toc.forEach((item) => {
                     const tocItem = document.createElement("div");
@@ -267,13 +280,13 @@ async function initReader(bookData, savedPosition = null) {
             } else {
                 tocContent.innerHTML = "<p>无可用目录</p>";
             }
-            
+
             // 加载保存的配置
             loadSavedSettings();
         };
 
         // 异步加载目录和配置（不阻塞主流程）
-        loadTocAndSettings().catch(err => {
+        loadTocAndSettings().catch((err) => {
             console.warn("加载目录或配置失败:", err);
         });
 
@@ -290,14 +303,18 @@ async function initReader(bookData, savedPosition = null) {
 async function generateLocationsInBackground(interval = 5000) {
     try {
         // 显示"计算中..."提示
-        const currentLocationElement = document.getElementById("currentLocation");
-        if (currentLocationElement && !currentLocationElement.textContent.includes("/")) {
+        const currentLocationElement =
+            document.getElementById("currentLocation");
+        if (
+            currentLocationElement &&
+            !currentLocationElement.textContent.includes("/")
+        ) {
             currentLocationElement.textContent = "计算中...";
         }
 
         // 生成位置信息（使用更大的间隔以提高速度）
         await book.locations.generate(interval);
-        
+
         // locations生成后，更新当前进度显示
         try {
             const currentLocation = rendition.currentLocation();
@@ -316,7 +333,8 @@ async function generateLocationsInBackground(interval = 5000) {
                 updateReadingProgress(currentLocation);
             }
         } catch (e) {
-            const currentLocationElement = document.getElementById("currentLocation");
+            const currentLocationElement =
+                document.getElementById("currentLocation");
             if (currentLocationElement) {
                 currentLocationElement.textContent = "-";
             }
