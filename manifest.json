@@ -1,0 +1,32 @@
+{
+    "manifest_version": 3,
+    "name": "EPUB Reader",
+    "version": "1.0",
+    "description": "A Chrome extension for uploading, storing, and reading EPUB e-books",
+    "permissions": ["storage", "unlimitedStorage"],
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "background": {
+        "service_worker": "background/background.js"
+    },
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["reader/*"],
+            "matches": ["<all_urls>"]
+        }
+    ]
+}

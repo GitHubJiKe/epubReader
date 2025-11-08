@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPUB Reader</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>EPUB 阅读器</h1>
+    
+    <div class="upload-section">
+      <div class="upload-area">
+        <img src="../icons/upload.svg" alt="上传" class="upload-icon">
+        <p>点击下方按钮上传EPUB文件</p>
+        <label for="fileInput" class="upload-button">选择文件</label>
+        <input type="file" id="fileInput" accept=".epub" hidden>
+      </div>
+    </div>
+    
+    <div class="library-section">
+      <h2>我的书库</h2>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="搜索书籍...">
+      </div>
+      <div class="book-list" id="bookList">
+        <!-- 书籍列表将通过JavaScript动态生成 -->
+      </div>
+    </div>
+  </div>
+  
+  <script src="../lib/jszip.min.js"></script>
+  <script src="../lib/epub.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

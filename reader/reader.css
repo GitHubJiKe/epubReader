@@ -1,0 +1,224 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #3498db;
+    --text-color: #333;
+    --bg-color: #fff;
+    --sidebar-bg: #f5f5f5;
+    --border-color: #ddd;
+    --header-bg: #f8f8f8;
+    --font-size: 18px;
+    --line-height: 1.6;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-theme {
+    --text-color: #eee;
+    --bg-color: #222;
+    --sidebar-bg: #333;
+    --border-color: #444;
+    --header-bg: #2c2c2c;
+}
+
+.reader-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.reader-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#bookTitle {
+    font-size: 1.2rem;
+    margin: 0 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+}
+
+.header-button {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+.header-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.reader-content {
+    display: flex;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.toc-panel {
+    width: 300px;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    height: 100%;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.toc-panel.active {
+    transform: translateX(0);
+}
+
+.toc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.toc-content {
+    padding: 15px;
+}
+
+.toc-item {
+    padding: 8px 0;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.toc-item:hover {
+    color: var(--primary-color);
+}
+
+.toc-item.active {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.book-content {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+    padding: 20px;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+}
+
+.navigation-controls {
+    /* display: none; */
+}
+
+/* 固定定位的翻页按钮 */
+.nav-button {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-button img {
+    width: 24px;
+    height: 24px;
+}
+
+#prevPage {
+    left: 20px;
+}
+
+#nextPage {
+    right: 20px;
+}
+
+#currentLocation {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    z-index: 100;
+}
+
+#currentLocation {
+    font-size: 0.9rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    #bookTitle {
+        max-width: 150px;
+    }
+
+    .toc-panel {
+        width: 250px;
+    }
+}
+
+/* 阅读器内容样式 */
+#bookContent iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
